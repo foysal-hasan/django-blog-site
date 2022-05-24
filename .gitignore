@@ -1,0 +1,5 @@
+db.sqlite3
+mysite/blog/migrations/*
+mysite/blog/__pycache__/*
+mysite/mysite/__pycache__/*
+mysite/blog/static/markdown/*

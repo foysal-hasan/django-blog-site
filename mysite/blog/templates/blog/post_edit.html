@@ -1,0 +1,32 @@
+{% extends 'blog/base.html'%}
+{% load static %}
+{% block title %}{{post.title}}{% endblock title %}
+
+{% comment %} 
+{% block content %}
+    <form method="post" class="blog-post-form mt-5">
+        {% csrf_token %}       
+        {{form.as_p}}
+        <input type="submit" value="Save" class="btn btn-primary float-right">
+    </form>
+
+{% endblock content %} {% endcomment %}
+
+
+{% block content1 %}
+
+
+<div class="container">
+    <div class="row">
+        <div class='col-10 offset-1 mt-5 shadow-lg p-3 mb-5 form-bg rounded'>
+             <form method="post" class="blog-post-form mt-5">
+                {% csrf_token %}       
+                {{form.as_p}}
+                <input type="submit" value="Save" class="btn btn-info float-right">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content1 %}

@@ -1,0 +1,40 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content1 %}
+    <div class="container mt-5" >
+        <div class="row">
+            <div class="col my-2 text-center">
+                <h1 class="text-white">Sign Up Form</h1>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-6 offset-md-3 shadow-lg p-3 mb-5 form-bg rounded">
+                <form action='' method="post" novalidate>
+                    {% csrf_token %}
+                    {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                    <p>{{error}}</p>
+                    {% endfor %}
+                    {% endif %}
+                    {% for fm in form%}
+                    {{fm.label_tag}}
+                    {{fm}}
+                    {{fm.errors | striptags}}
+                    <br />
+                    <br />
+                    {% endfor %}
+                    <input type="submit" value="Submit" class="btn btn-info">
+                </form>
+                
+                
+                {% if messages %}
+                {% for message in messages %}
+                <small class="success">{{message}}</small>
+                {% endfor %}
+                {% endif %}
+                
+            </div>
+                
+        </div>
+    </div>
+{% endblock content1 %}

@@ -1,0 +1,86 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}{{post.title}}{% endblock title %}
+
+{% block content1 %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class='post shadow-lg p-3 mb-5 form-bg rounded'>
+                {% if post.published_date %}
+                <div class="date text-light">
+                    <p>Publish: {{post.published_date}}</p>
+                    {% if isAuthor %}
+                        <p>Author: You</p>
+                    {% else %}
+                        <p>Author: {{post.author}}</p>
+                    {% endif %}
+                </div>
+                {% else %}
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'post_publish' pk=post.id %}" class="btn btn-info">Publish</a>
+                    {% endif %}
+                {% endif %}
+                {% if isAuthor or user.is_superuser%}
+                    <a href="{% url 'post_edit' post.id %}" class="btn btn-info">Edit</a>
+                    <a href="{% url 'delete_post' pk=post.id %}" class="btn btn-danger">Delete</a>
+                  
+                {% endif %}
+                    
+                
+            
+                <h3 class="text-light mt-3">Title: {{post.title}}</h3>
+            
+                <p class="text-light">
+                    {{post.text| linebreaksbr}}
+                </p>
+            
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+                <hr />
+                <a href="{% url 'add_comment' pk=post.pk %}" class="btn btn-secondary mb-5">Add Comment </a>
+
+
+
+                {% for comment in post.comments.all %}
+                <div class="text-light shadow-lg p-3 mb-5 form-bg rounded">
+                    <small> 
+                        {% if user.get_username == comment.author %}
+                        <p>Commented Author: You</p>
+                        {% else %}
+                        <p>Commented Author: {{comment.author}}</p>
+                        {% endif %}
+                        Commented Date: {{comment.created_date}}<br>
+                    </small>
+
+                    {% if user.is_authenticated %}
+
+                    {% if user.get_username == comment.author or user.is_superuser %}
+                    <a href="{% url 'delete_comment' pk=comment.pk %}" class="btn btn-danger">Delete</a>
+                    {% endif %}
+
+                    {% endif %}
+
+                    <div>
+                        <h3>Comment: </h3>
+                        <div class="mb-5">
+                            {{comment.text}}
+                        </div>
+
+                    </div>
+                </div>
+                {% empty%}
+                <p class="mb-5 text-light">No comments yet...</p>
+                {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+    
+{% endblock content1 %}
+

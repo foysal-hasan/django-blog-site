@@ -1,0 +1,36 @@
+
+body {
+    font-family: 'Inconsolata', monospace;
+}
+.page-header h1 > a {
+    color: #fff;
+    text-decoration: none;
+}
+.page-header h1 > a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.content
+{
+    margin-left: 40px;
+}
+
+.post{
+    margin-bottom: 60px;
+    margin-top: 20px;
+}
+.date
+{
+    color: #828282;
+}
+
+.blog-post-form{
+    width: 100%;
+    
+}
+.blog-post-form textarea{
+        width: 100%;
+        height: 150px;
+}
+

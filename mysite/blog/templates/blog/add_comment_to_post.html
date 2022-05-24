@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}
+    Add comment
+{% endblock title %}
+
+
+{% block content %}
+<h3 class="mt-5 text-white">New Comment</h3>
+   <form method="post" class="blog-post-form mt-5">
+        {% csrf_token %}       
+        {{form.as_p}}
+        <input type="submit" value="Save" class="btn btn-primary float-right">
+    </form>
+
+    
+{% endblock content %}
